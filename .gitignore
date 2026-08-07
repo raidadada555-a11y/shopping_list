@@ -1,0 +1,4 @@
+.vscode-server/
+vendor/
+node_modules/
+.env
