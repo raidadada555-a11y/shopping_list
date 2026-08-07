@@ -43,6 +43,16 @@ class ShoppingListController extends Controller
         return redirect('/completed_shopping_list/list');
     }
 
+    // 「買うもの」の削除処理
+    public function delete($id)
+    {
+        // ログインユーザーのデータであることを確認して削除
+        $shoppingList = ShoppingList::where('user_id', Auth::id())->findOrFail($id);
+        $shoppingList->delete();
+
+        return redirect()->route('front.list');
+    }
+
     // 購入済み「買うもの」一覧画面の表示
     public function completedList()
     {

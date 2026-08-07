@@ -53,8 +53,8 @@
                 </form>
             </td>
             <td style="border: 3px double black; padding: 5px 10px;">
-                <!-- 削除ボタン用のフォーム -->
-                <form action="/shopping_list/delete/{{ $item->id }}" method="POST" style="margin:0;">
+                <!-- 削除ボタン：押したときに確認ダイアログを表示 -->
+                <form action="/shopping_list/delete/{{ $item->id }}" method="POST" style="margin:0;" onsubmit="return confirm('この「買うもの」を「削除」します。よろしいですか？');">
                     @csrf
                     @method('DELETE')
                     <button type="submit">削除</button>
