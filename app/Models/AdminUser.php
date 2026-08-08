@@ -25,7 +25,7 @@ class AdminUser extends Authenticatable
         return 'login_id';
     }
 
-    // 👇 パスワードの格納カラムを明示する！
+    //  パスワードの格納カラムを明示する！
     public function getAuthPasswordName()
     {
         return 'password';

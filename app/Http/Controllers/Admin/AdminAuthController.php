@@ -19,13 +19,32 @@ class AdminAuthController extends Controller
     // 管理者ログイン処理
     public function login(Request $request)
     {
-        // 入力値の検証（未入力の場合は自動で元の画面にエラー付きで戻る）
-        $request->validate([
+        // 入力値の検証
+        $credentials = $request->validate([
             'login_id' => 'required',
             'password' => 'required',
         ]);
 
-        // ★バリデーションを無事通過したときの仮の処理
-        return 'ログインのバリデーションを通過しました！';
+        // adminガードを使って認証を試みる
+        if (Auth::guard('admin')->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('admin.top'));
+        }
+
+        // 認証失敗時はログイン画面に戻す
+        return back()->withErrors([
+            'login_id' => 'ログインIDまたはパスワードが正しくありません。',
+        ]);
+    }
+
+    // ログアウト処理
+    public function logout(Request $request)
+    {
+        Auth::guard('admin')->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('admin.index');
     }
 }
