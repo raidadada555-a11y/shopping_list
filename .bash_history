@@ -1,504 +1,3 @@
-composer create-project laravel/laravel . --prefer-dist ^10.0
-cd /var/www/laravel_app
-composer create-project laravel/laravel . --prefer-dist ^10.0
-mv .git ../git_backup
-composer create-project laravel/laravel . --prefer-dist ^10.0
-mv ../git_backup .git
-sudo apt install -y php8.3-xml
-composer create-project laravel/laravel . --prefer-dist ^10.0
-mv ../git_backup .git
-rm -rf .git
-composer create-project laravel/laravel . --prefer-dist ^10.0
-cd /var/www
-rm -rf laravel_app
-composer create-project laravel/laravel laravel_app --prefer-dist ^10.0
-cd laravel_app
-git init
-git branch -M main
-git remote add origin https://github.com/raidadada555-a11y/-.git
-git add .
-git commit -m "1st install"
-git push -u origin main
-/var/www/laravel_app
-cd /var/www/laravel_app
-/var/www/laravel_app
-sudo dd if=/dev/zero of=/swapfile bs=1M count=2048
-sudo chmod 600 /swapfile
-sudo mkswap /swapfile
-sudo swapon /swapfile
-echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
-php artisan optimize:clear
-cd ~/environment/todolist
-php artisan optimize:clear
-cd /home/ec2-user/environment/todolist
-php artisan optimize:clear
-cd /var/www/laravel_app
-php artisan optimize:clear
-cd /var/www/laravel_app
-php artisan tinker
-cd /var/www/laravel_app
-php artisan tinker
-cd /var/www/laravel_app
-php artisan optimize:clear
-cd /var/www/laravel_app
-php artisan route:clear
-cd /var/www/laravel_app
-php artisan tinker
-php artisan config:clear
-php artisan route:clear
-php artisan optimize:clear
-php artisan make:model Admin
-php artisan migrate:fresh
-pwd
-ls
-cd /var/www/laravel_app
-ls
-php artisan migrate:fresh
-php artisan tinker
-pwd
-git status
-cd /var/www/laravel_app
-git status
-git add .
-git commit -m "8/2分"
-git push origin main
-git pull origin main
-cd /var/www
-sudo mv laravel_app laravel_app_old
-git clone https://github.com/raidadada555-a11y/-.git laravel_app
-php artisan serve --host=0.0.0.0 --port=8000
-nano .env
-cp .env.example .env
-[200~cd /var/www/laravel_app
-cp .env.example .env~
-php artisan migrate:status
-cd /var/www/laravel_app
-php artisan migrate:status
-cd /var/www/laravel_app
-composer install
-php artisan key:generate
-cp .env.example .env
-php artisan key:generate
-php artisan migrate
-sudo apt update
-sudo apt install -y php-mysql
-sudo systemctl restart apache2
-php artisan migrate
-sudo systemctl start mariadb
-sudo systemctl start mysql
-sudo apt update
-sudo apt install -y mariadb-server
-sudo systemctl start mariadb
-sudo systemctl enable mariadb
-sudo mysql -u root
-cd /var/www/laravel_app
-php artisan migrate
-sudo mysql -u root
-nano .env
-php artisan migrate
-php artisan config:clear
-php artisan migrate
-php artisan config:clear
-php artisan migrate
-php artisan optimize:clear
-php artisan migrate
-php artisan serve
-http://127.0.0.1:8000/admin
-php artisan tinker
-cd /var/www/laravel_app
-php artisan tinker
-$admin = App\Models\AdminUser::where('login_id', 'admin')->first();
-$admin->password = Hash::make('password123');
-$admin->save();
-php artisan route:list
-cd /var/www/laravel_app
-php artisan route:list
-<?php
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\CompletedTaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-// use App\Http\Controllers\Admin\UserController as AdminUserController; // ← 未作成のためコメントアウト
-// トップページ（ログイン判定）
-Route::get('/', function () {
-})->name('front.index');
-// 通常ログイン用
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-// 会員登録関連
-Route::get('/user/register', [UserController::class, 'index'])->name('front.user.register');
-Route::post('/user/register', [UserController::class, 'register'])->name('front.user.register.post');
-// タスク管理関連（ログイン必須）
-Route::middleware(['auth'])->group(function () {
-php artisan route:list
-php artisan migrate
-php artisan migrate:fresh
-cat database/migrations/2014_10_12_000000_create_users_table.php
-php artisan tinker
-ls database/seeders/
-cat database/seeders/AdminAuthUser.php
-php artisan db:seed --class=AdminAuthUser
-cat app/Http/Controllers/Admin/AuthController.php
-cat config/auth.php
-cat app/Models/AdminUser.php
-ubuntu@ip-172-31-26-180:/var/www/laravel_app$ cat app/Models/AdminUser.php
-<?php
-namespace App\Models;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-class AdminUser extends Authenticatable
-{     use HasFactory;          protected $table = 'admin_users';     protected $fillable = [;         "login_id",;         "password",;     ];     protected $hidden = [;         'password',;     ];     public function getAuthIdentifierName()
-php artisan config:clear
-php artisan cache:clear
-cd /var/www/laravel_app
-php artisan config:clear
-php artisan cache:clear
-cat app/Http/Controllers/Admin/LoginController.php
-cd /var/www/laravel_app
-php artisan config:clear
-php artisan cache:clear
-php artisan tinker
-php artisan config:clear
-php artisan cache:clear
-cat app/Models/AdminUser.php
-php artisan config:clear
-php artisan cache:clear
-php artisan tinker
-cat app/Http/Requests/AdminLoginPostRequest.php
-php artisan optimize:clear
-cat resources/views/admin/index.blade.php
-php artisan route:list --path=admin
-cat app/Http/Controllers/Admin/AuthController.php
-cat config/auth.php
-App\Models\AdminUser::all();
-php artisan tinker
-php artisan tinker
-cd /var/www/laravel_app
-php artisan tinker
-php artisan db:seed --class=AdminAuthUser
-cat app/Http/Requests/AdminLoginPostRequest.php
-cat resources/views/admin/index.blade.php
-grep -E '^DB_' .env
-php artisan tinker
-sudo chmod -R 775 storage bootstrap/cache
-sudo chown -R www-data:www-data storage bootstrap/cache
-php artisan config:clear
-php artisan cache:clear
-php artisan session:clear
-cd /var/www/laravel_app
-sudo chmod -R 775 storage bootstrap/cache
-sudo chown -R www-data:www-data storage bootstrap/cache
-php artisan config:clear
-php artisan cache:clear
-cat app/Http/Controllers/Admin/HomeController.php
-php artisan route:clear
-cd /var/www/laravel_app
-sudo chown -R www-data:www-data storage bootstrap/cache
-sudo chmod -R 775 storage bootstrap/cache
-cd /var/www/laravel_app
-sudo rm -rf storage/logs/*
-sudo rm -rf storage/framework/cache/*
-sudo rm -rf storage/framework/sessions/*
-sudo rm -rf storage/framework/views/*
-sudo chown -R www-data:www-data storage bootstrap/cache
-sudo chmod -R 775 storage bootstrap/cache
-cd /var/www/laravel_app
-sudo chown -R www-data:www-data /var/www/laravel_app
-sudo chmod -R 775 storage bootstrap/cache
-sudo find /var/www/laravel_app/storage -type d -exec chmod 775 {} +
-sudo find /var/www/laravel_app/storage -type f -exec chmod 664 {} +
-ps aux | grep -E 'apache|nginx|php-fpm'
-cd /var/www/laravel_app
-sudo chown -R ubuntu:ubuntu storage bootstrap/cache
-cd /var/www/laravel_app
-php artisan config:clear
-php artisan route:clear
-php artisan cache:clear
-sudo chown -R ubuntu:ubuntu storage bootstrap/cache
-cd /var/www/laravel_app
-sudo rm -rf storage/framework/cache/*
-sudo rm -rf storage/framework/sessions/*
-sudo rm -rf storage/framework/views/*
-sudo rm -rf storage/logs/*
-sudo chown -R ubuntu:ubuntu storage bootstrap/cache
-sudo chmod -R 775 storage bootstrap/cache
-php artisan config:clear
-php artisan route:clear
-php artisan cache:clear
-cd /var/www/laravel_app
-sudo rm -rf bootstrap/cache/*.php
-sudo chown -R ubuntu:ubuntu /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
-sudo chmod -R 775 storage bootstrap/cache
-php artisan config:clear
-php artisan route:clear
-php artisan cache:clear
-cd /var/www/laravel_app
-mkdir -p storage/framework/cache/data
-sudo chown -R ubuntu:ubuntu storage bootstrap/cache
-sudo chmod -R 775 storage bootstrap/cache
-php artisan config:clear
-php artisan route:clear
-php artisan cache:clear
-cd /var/www/laravel_app
-php artisan route:list
-cd /var/www/laravel_app
-php artisan serve --host=0.0.0.0 --port=8080
-php artisan serve
-cd /var/www/laravel_app
-php artisan serve
-php artisan tinker --execute="\App\Models\AdminUser::where('login_id', 'admin')->update(['password' => \Illuminate\Support\Facades\Hash::make('password123')]);"
-cd /var/www/laravel_app
-php artisan tinker --execute="\App\Models\AdminUser::where('login_id', 'admin')->update(['password' => \Illuminate\Support\Facades\Hash::make('password123')]);"
-php artisan serve --port=8080
-php artisan serve --host=0.0.0.0 --port=8080
-php artisan route:list
-sudo fuser -k 8080/tcp
-cd /var/www/laravel_app
-php artisan serve --host=0.0.0.0 --port=8080
-cd /var/www/laravel_app
-php artisan config:clear
-php artisan route:clear
-php artisan serve --host=0.0.0.0 --port=8080
-# まず今のサーバーを Ctrl + C で止めてから
-cd /var/www/laravel_app
-php artisan config:clear
-php artisan route:clear
-php artisan serve --host=0.0.0.0 --port=8080
-cd /var/www/laravel_app
-cat routes/web.php
-cd /var/www/laravel_app
-cat << 'EOF' > routes/web.php
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\CompletedTaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-
-// トップページ（ログイン判定）
-Route::get('/', function () {
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        return redirect('/task/list');
-    }
-    return view('welcome');
-})->name('front.index');
-
-// 通常ログイン用
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// 会員登録関連
-Route::get('/user/register', [UserController::class, 'index'])->name('front.user.register');
-Route::post('/user/register', [UserController::class, 'register'])->name('front.user.register.post');
-
-// タスク管理関連（ログイン必須）
-Route::middleware(['auth'])->group(function () {
-    Route::get('/task/list', [TaskController::class, 'list'])->name('task.list');
-    Route::post('/task/register', [TaskController::class, 'register'])->name('task.register');
-    Route::get('/task/edit/{task_id}', [TaskController::class, 'edit'])->name('edit');
-    Route::post('/task/editSave/{task_id}', [TaskController::class, 'editSave'])->name('editSave');
-    Route::get('/task/detail/{task_id}', [TaskController::class, 'detail'])->name('detail');
-    
-    // 完了タスク一覧・完了処理
-    Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list'])->name('completed_tasks.list');
-    Route::post('/task/complete/{task_id}', [TaskController::class, 'complete'])->name('task.complete');
-
-    // ログアウト
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-// 管理画面
-Route::get('/admin', [AdminAuthController::class, 'index'])->name('admin.index');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-
-Route::prefix('/admin')->middleware(['auth:admin'])->group(function () {
-    Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
-    Route::get('/logout', [AdminAuthController::class, 'logout']);
-});
-EOF
-
-php artisan route:clear
-php artisan config:clear
-cd /var/www/laravel_app
-cat << 'EOF' > routes/web.php
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\CompletedTaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-
-// トップページ（ログイン判定）
-Route::get('/', function () {
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        return redirect('/task/list');
-    }
-    return view('welcome');
-})->name('front.index');
-
-// 通常ログイン用
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// 会員登録関連
-Route::get('/user/register', [UserController::class, 'index'])->name('front.user.register');
-Route::post('/user/register', [UserController::class, 'register'])->name('front.user.register.post');
-
-// タスク管理関連（ログイン必須）
-Route::middleware(['auth'])->group(function () {
-    Route::get('/task/list', [TaskController::class, 'list'])->name('task.list');
-    Route::post('/task/register', [TaskController::class, 'register'])->name('task.register');
-    Route::get('/task/edit/{task_id}', [TaskController::class, 'edit'])->name('edit');
-    Route::post('/task/editSave/{task_id}', [TaskController::class, 'editSave'])->name('editSave');
-    Route::get('/task/detail/{task_id}', [TaskController::class, 'detail'])->name('detail');
-    
-    // 完了タスク一覧・完了処理
-    Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list'])->name('completed_tasks.list');
-    Route::post('/task/complete/{task_id}', [TaskController::class, 'complete'])->name('task.complete');
-
-    // ログアウト
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-// 管理画面
-Route::get('/admin', [AdminAuthController::class, 'index'])->name('admin.index');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-
-Route::prefix('/admin')->middleware(['auth:admin'])->group(function () {
-    Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
-    Route::get('/logout', [AdminAuthController::class, 'logout']);
-});
-EOF
-
-php artisan route:clear
-php artisan config:clear
-cd /var/www/laravel_app
-sudo chown -R ubuntu:ubuntu routes/
-cat << 'EOF' > routes/web.php
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\CompletedTaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-
-// トップページ（ログイン判定）
-Route::get('/', function () {
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        return redirect('/task/list');
-    }
-    return view('welcome');
-})->name('front.index');
-
-// 通常ログイン用
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// 会員登録関連
-Route::get('/user/register', [UserController::class, 'index'])->name('front.user.register');
-Route::post('/user/register', [UserController::class, 'register'])->name('front.user.register.post');
-
-// タスク管理関連（ログイン必須）
-Route::middleware(['auth'])->group(function () {
-    Route::get('/task/list', [TaskController::class, 'list'])->name('task.list');
-    Route::post('/task/register', [TaskController::class, 'register'])->name('task.register');
-    Route::get('/task/edit/{task_id}', [TaskController::class, 'edit'])->name('edit');
-    Route::post('/task/editSave/{task_id}', [TaskController::class, 'editSave'])->name('editSave');
-    Route::get('/task/detail/{task_id}', [TaskController::class, 'detail'])->name('detail');
-    
-    // 完了タスク一覧・完了処理
-    Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list'])->name('completed_tasks.list');
-    Route::post('/task/complete/{task_id}', [TaskController::class, 'complete'])->name('task.complete');
-
-    // ログアウト
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-// 管理画面
-Route::get('/admin', [AdminAuthController::class, 'index'])->name('admin.index');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-
-Route::prefix('/admin')->middleware(['auth:admin'])->group(function () {
-    Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
-    Route::get('/logout', [AdminAuthController::class, 'logout']);
-});
-EOF
-
-php artisan route:clear
-php artisan config:clear
-cd /var/www/laravel_app
-sudo chown -R ubuntu:ubuntu routes/
-cat << 'EOF' > routes/web.php
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\CompletedTaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-
-// トップページ（ログイン判定）
-Route::get('/', function () {
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        return redirect('/task/list');
-    }
-    return view('welcome');
-})->name('front.index');
-
-// 通常ログイン用
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// 会員登録関連
-Route::get('/user/register', [UserController::class, 'index'])->name('front.user.register');
-Route::post('/user/register', [UserController::class, 'register'])->name('front.user.register.post');
-
-// タスク管理関連（ログイン必須）
-Route::middleware(['auth'])->group(function () {
-    Route::get('/task/list', [TaskController::class, 'list'])->name('task.list');
-    Route::post('/task/register', [TaskController::class, 'register'])->name('task.register');
-    Route::get('/task/edit/{task_id}', [TaskController::class, 'edit'])->name('edit');
-    Route::post('/task/editSave/{task_id}', [TaskController::class, 'editSave'])->name('editSave');
-    Route::get('/task/detail/{task_id}', [TaskController::class, 'detail'])->name('detail');
-    
-    // 完了タスク一覧・完了処理
-    Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list'])->name('completed_tasks.list');
-    Route::post('/task/complete/{task_id}', [TaskController::class, 'complete'])->name('task.complete');
-
-    // ログアウト
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-// 管理画面
-Route::get('/admin', [AdminAuthController::class, 'index'])->name('admin.index');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-
-Route::prefix('/admin')->middleware(['auth:admin'])->group(function () {
-    Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
-    Route::get('/logout', [AdminAuthController::class, 'logout']);
-});
-EOF
-
-php artisan route:clear
-php artisan config:clear
-cd /var/www/laravel_app
-sudo chown -R ubuntu:ubuntu /var/www/laravel_app
-sudo chmod -R 775 routes
-cd /var/www/laravel_app
-sudo tee routes/web.php > /dev/null << 'EOF'
-<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
 use App\Http\Controllers\CompletedTaskController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\LoginController; 
@@ -1821,3 +1320,681 @@ find /home/ubuntu -name "artisan"
 find / -name "artisan" 2>/dev/null
 cd /var/www/laravel_app
 php artisan view:clear
+git status
+git checkout --orphan clean_start
+git add .
+git commit -m "「買うもの」の登録"
+git reset
+git add app config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .env.example
+git status
+git add app config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .env.example
+git status
+ls -la
+git add app config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .env.example
+git commit -m "「買うもの」の登録"
+git branch -M main
+git push -u origin main --force
+git status
+git add .
+git commit -m "完了機能準備済み段階(削除機能追加前段階)"
+git push origin main
+pwd
+cd shopping_list
+git remote -v
+git add app/Http/Controllers/ShoppingListController.php routes/web.php resources/views/shopping_list/completed_list.blade.php
+git commit -m "完了機能準備済み段階(削除機能追加前段階)"
+git push origin main
+git branch
+git status
+git diff
+git add -A
+git commit -m "完了機能準備済み段階(削除機能追加前段階)"
+git push origin main
+cd /home/ubuntu/shopping_list
+ls -la
+git add -A
+git commit -m "完了機能準備済み段階(削除機能追加前段階)"
+git push -f origin main
+git remote -v
+git push origin main -v
+git status
+cat app/Http/Controllers/ShoppingListController.php
+find / -name "*LARAVEL_APP*" 2>/dev/null
+find / -name "*ShoppingListController.php*" 2>/dev/null
+cd /var/www/laravel_app
+git status
+git add -A
+git commit -m "完了機能準備済み段階(削除機能追加前段階)"
+git push origin main
+git pull origin main --rebase
+git push origin main
+ps aux | grep artisan
+cd /var/www/laravel_app
+php artisan view:clear
+php artisan serve
+php artisan make:migration create_shopping_lists_table
+php artisan make:migration create_completed_shopping_lists_table
+cd /var/www/laravel_app
+php artisan make:migration create_shopping_lists_table
+php artisan make:migration create_completed_shopping_lists_table
+php artisan migrate
+php artisan make:model ShoppingList
+php artisan make:model CompletedShoppingList
+php artisan make:controller ShoppingListController
+php artisan serv
+git add .
+git commit -m "「買うもの」の登録"
+git push origin main
+git reset
+git init
+git add .
+git commit -m "初回コミット：”「買うもの」の登録"
+git branch -M main
+git remote add origin https://github.com/raidadada555-a11y/shopping_list.git
+git push -u origin main
+git pull origin main --allow-unrelated-histories
+git pull origin main --allow-unrelated-histories --no-rebase
+git add resources/views/auth/login.blade.php
+git add .
+git commit -m "「買うもの」の登録"
+git push -u origin main
+echo ".vscode-server/" >> .gitignore
+echo "/vendor/" >> .gitignore
+echo "/node_modules/" >> .gitignore
+echo ".env" >> .gitignore
+git reset --soft HEAD~1
+git reset
+git add .
+git commit -m "「買うもの」の登録"
+git push -u origin main
+git push -u origin main --force
+git reset --mixed HEAD~1
+echo ".vscode-server/" >> .gitignore
+git add .
+git commit -m "「買うもの」の登録"
+git push -u origin main --force
+git update-ref -d HEAD
+echo ".vscode-server/" >> .gitignore
+git add .
+git commit -m "「買うもの」の登録"
+git branch -M main
+git push -u origin main --force
+rm -rf .git
+echo ".vscode-server/" > .gitignore
+echo "vendor/" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo ".env" >> .gitignore
+git init
+git branch -M main
+git add app config database public resources routes storage tests artisan composer.json package.json vite.config.js .gitignore .env.example
+git commit -m "「買うもの」の登録"
+git remote add origin https://github.com/raidadada555-a11y/shopping_list.git
+git push -u origin main --force
+git remote remove origin
+git remote add origin https://github.com/raidadada555-a11y/shopping_list.git
+git fetch origin
+git checkout -B main origin/main
+git add app config database public resources routes storage tests artisan composer.json package.json vite.config.js .gitignore .env.example
+git commit -m "「買うもの」の登録"
+rm -f "The email field is required.," "The name field is required.," "The password confirmation does not match.," "The password field is required.," "[required," email name
+git add app config database public resources routes storage tests artisan composer.json package.json vite.config.js .gitignore .env.example
+git status
+cd ~/shopping_list
+ls -F
+rm -f "-" FETCH_HEAD "email," "name,"
+git add app bootstrap config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .gitignore .env.example
+git status
+git add app config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .gitignore .env.example
+git status
+git add app/ config/ database/ public/ resources/ routes/ storage/ tests/
+git add artisan composer.json package.json vite.config.js .gitignore .env.example
+git commit -m "「買うもの」の登録"
+git push -u origin main --force
+git fetch origin main
+git pull origin main --no-rebase
+git add app config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .gitignore .env.example
+git commit -m "「買うもの」の登録"
+find . -maxdepth 2 -name "app"
+ls -F
+git add app
+git add config database public resources routes storage tests
+git add artisan composer.json composer.lock package.json phpunit.xml vite.config.js .gitignore .env.example
+git status
+rm -rf .git
+git init
+git branch -M main
+git remote add origin https://github.com/raidadada555-a11y/shopping_list.git
+echo ".vscode-server/" > .gitignore
+echo "vendor/" >> .gitignore
+echo "node_modules/" >> .gitignore
+echo ".env" >> .gitignore
+git add app config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .gitignore .env.example
+git commit -m "「買うもの」の登録"
+git push -u origin main --force
+git fetch origin main
+git pull origin main --no-rebase
+git add app config database public resources routes storage tests artisan composer.json composer.lock package.json phpunit.xml vite.config.js .gitignore .env.example
+git commit -m "「買うもの」の登録"
+git push -u origin main --force
+git checkout --orphan temp_branch
+git add -A
+git commit -m "「買うもの」の登録"
+git branch -D main
+git branch -m main
+git push -u origin main --force
+git remote remove origin
+git remote add origin https://github.com/raidadada555-a11y/shopping_list.git
+git branch -M main
+git push -u origin main --force
+git branch -M main
+git push -u origin main --force
+cd /var/www/laravel_app
+php artisan route:clear
+php artisan cache:clear
+sudo chown -R ubuntu:ubuntu /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+php artisan cache:clear
+php artisan route:clear
+sudo chmod -R 777 /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+php artisan cache:clear
+sudo chown -R ubuntu:ubuntu /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+php artisan cache:clear
+ls -l /var/www/laravel_app
+sudo rm -rf /var/www/laravel_app/storage/framework/cache/*
+sudo rm -rf /var/www/laravel_app/storage/framework/views/*
+sudo rm -rf /var/www/laravel_app/storage/framework/sessions/*
+sudo chown -R ubuntu:ubuntu /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+sudo chmod -R 777 /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+php artisan cache:clear
+php artisan route:clear
+sudo rm -rf /var/www/laravel_app/storage/framework/cache
+mkdir -p /var/www/laravel_app/storage/framework/cache/data
+sudo chown -R ubuntu:ubuntu /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+sudo chmod -R 777 /var/www/laravel_app/storage /var/www/laravel_app/bootstrap/cache
+php artisan cache:clear
+php artisan route:list
+cat << 'EOF' > /var/www/laravel_app/app/Http/Controllers/Admin/AuthController.php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class AuthController extends Controller
+{
+    public function index()
+    {
+        return view("admin.auth.index");
+    }
+
+    public function login(Request $request)
+    {
+        // 管理者用のログイン処理などをここに記述します
+    }
+}
+EOF
+
+git reset --hard d7582b8898be02be2d79f88d2d822a3f02380579
+git add .
+git commit -m "削除機能完了時点(管理ログイン画面作成前)"
+git push origin main
+php artisan make:controller Admin/AuthController
+php artisan make:controller Admin/AdminAuthController
+mkdir -p resources/views/admin/auth && touch resources/views/admin/auth/index.blade.php
+mkdir -p resources/views/admin && touch resources/views/admin/index.blade.php
+git status
+rm resources/views/admin/index.blade.php
+git add .
+git commit -m "管理者用ログイン画面完成時点(管理者管理画面作成前)"
+git push origin main
+touch resources/views/admin/top.blade.php
+php artisan make:controller Admin/HomeController
+php artisan make:seeder AdminUserSeeder
+php artisan migrate:fresh --seed
+php artisan config:clear
+php artisan cache:clear
+sudo chmod -R 777 storage bootstrap/cache
+cd /var/www/laravel_app
+php artisan migrate:fresh --seed
+mkdir -p resources/views/admin/user && cat << 'EOF' > resources/views/admin/user/list.blade.php
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>買い物リスト 管理画面（ユーザー一覧画面）</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px 10px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    {{-- ナビゲーションメニュー（共通） --}}
+    <nav>
+        <p><a href="{{ route('admin.top') }}">管理画面Top</a></p>
+        <p><a href="{{ route('admin.user.list') }}">ユーザー一覧</a></p>
+        <p>
+            <form action="{{ route('admin.logout') }}" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" style="background: none; color: blue; border: none; padding: 0; font: inherit; cursor: pointer; text-decoration: underline;">ログアウト</button>
+            </form>
+        </p>
+    </nav>
+
+    <h1>ユーザー一覧</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ユーザID</th>
+                <th>ユーザ名</th>
+                <th>購入した「買うもの」の数</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->completed_shopping_lists_count ?? 0 }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html>
+EOF
+
+mkdir -p app/Http/Controllers/Admin && cat << 'EOF' > app/Http/Controllers/Admin/UserController.php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function index()
+    {
+        $users = User::withCount('completedShoppingLists')->get();
+
+        return view('admin.user.list', compact('users'));
+    }
+}
+EOF
+
+composer dump-autoload
+app/Http/Controllers/Admin/UserController.php
+cat app/Http/Controllers/Admin/UserController.php
+[200~ubuntu@ip-172-31-26-180:/var/www/laravel_app$ cat app/Http/Controllers/Admin/UserController.php
+<?php
+declare(strict_types=1);
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+class UserController extends Controller
+{     public function index()
+cat app/Http/Controllers/Admin/UserController.php
+mkdir -p resources/views/admin/user && cat << 'EOF' > resources/views/admin/user/list.blade.php
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>買い物リスト 管理画面（ユーザー一覧画面）</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <a href="{{ route('admin.top') }}">管理画面Top</a> | 
+        <a href="{{ route('admin.user.list') }}">ユーザー一覧</a> | 
+        <form action="{{ route('admin.logout') }}" method="POST" style="display: inline;">
+            @csrf
+            <button type="submit" style="background: none; color: blue; border: none; padding: 0; font: inherit; cursor: pointer; text-decoration: underline;">ログアウト</button>
+        </form>
+    </p>
+
+    <h1>ユーザー一覧</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ユーザID</th>
+                <th>ユーザ名</th>
+                <th>購入した「買うもの」の数</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->completed_shopping_lists_count }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </body>
+</html>
+EOF
+
+php artisan optimize:clear
+cat << 'EOF' > app/Models/User.php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function completedShoppingLists()
+    {
+        return $this->hasMany(ShoppingList::class)->where('status', 'completed');
+    }
+}
+EOF
+
+cat << 'EOF' > app/Models/User.php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function completedShoppingLists()
+    {
+        return $this->hasMany(ShoppingList::class);
+    }
+}
+EOF
+
+cat << 'EOF' > app/Models/User.php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function completedShoppingLists()
+    {
+        return $this->hasMany(ShoppingList::class);
+    }
+}
+EOF
+
+cat << 'EOF' > resources/views/admin/user/list.blade.php
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>買い物リスト 管理画面（ユーザー一覧画面）</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <a href="{{ route('admin.top') }}">管理画面Top</a><br>
+        <a href="{{ route('admin.user.list') }}">ユーザー一覧</a><br>
+        <form action="{{ route('admin.logout') }}" method="POST" style="display: inline; margin: 0; padding: 0;">
+            @csrf
+            <button type="submit" style="background: none; color: blue; border: none; padding: 0; font: inherit; cursor: pointer; text-decoration: underline;">ログアウト</button>
+        </form>
+    </p>
+
+    <h1>ユーザー一覧</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ユーザID</th>
+                <th>ユーザ名</th>
+                <th>購入した「買うもの」の数</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->completed_shopping_lists_count }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html>
+EOF
+
+cat << 'EOF' > resources/views/admin/user/list.blade.php
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>買い物リスト 管理画面（ユーザー一覧画面）</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <p>
+        <a href="{{ route('admin.top') }}">管理画面Top</a><br>
+        <a href="{{ route('admin.user.list') }}">ユーザー一覧</a><br>
+        <form action="{{ route('admin.logout') }}" method="POST" style="display: inline; margin: 0; padding: 0;">
+            @csrf
+            <button type="submit" style="background: none; color: blue; border: none; padding: 0; font: inherit; cursor: pointer; text-decoration: underline;">ログアウト</button>
+        </form>
+    </p>
+
+    <h1>ユーザー一覧</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ユーザID</th>
+                <th>ユーザ名</th>
+                <th>購入した「買うもの」の数</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->completed_shopping_lists_count }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html>
+EOF
+
+cat << 'EOF' > resources/views/admin/user/list.blade.php
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>買い物リスト 管理画面（ユーザー一覧画面）</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 50%;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #000;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .nav-links a, .nav-links form {
+            display: block;
+            margin: 0;
+            padding: 0;
+            line-height: 1.2;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-links">
+        <a href="{{ route('admin.top') }}">管理画面Top</a>
+        <a href="{{ route('admin.user.list') }}">ユーザー一覧</a>
+        <form action="{{ route('admin.logout') }}" method="POST">
+            @csrf
+            <button type="submit" style="background: none; color: blue; border: none; padding: 0; font: inherit; cursor: pointer; text-decoration: underline;">ログアウト</button>
+        </form>
+    </div>
+
+    <h1>ユーザー一覧</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ユーザID</th>
+                <th>ユーザ名</th>
+                <th>購入した「買うもの」の数</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($users as $user)
+                <tr>
+                    <td>{{ $user->id }}</td>
+                    <td>{{ $user->name }}</td>
+                    <td>{{ $user->completed_shopping_lists_count }}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+</body>
+</html>
+EOF
+
+git add .
+git commit -m "8/8初回提出段階"
+git push origin main
+php artisan migrate:fresh --seed
+cd /var/www/laravel_app
+php artisan migrate:fresh --seed
+cd /var/www/laravel_app
+php artisan serve --host=0.0.0.0 --port=8001
