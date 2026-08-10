@@ -8,7 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('completed_shopping_lists', function (Blueprint $table) {
+        Schema::create('shopping_lists', function (Blueprint $table) { 
             $table->id();
             $table->foreignId('user_id');
             $table->string('name', 255);
@@ -18,6 +18,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('completed_shopping_lists');
+        Schema::dropIfExists('shopping_lists'); 
     }
 };

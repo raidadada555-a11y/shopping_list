@@ -1,13 +1,16 @@
-@extends("admin.layout")
-@section("contents")
-    <menu label="リンク">
-    <a href="./user_list.html">ユーザ一覧</a><br>
-    管理画面機能 1<br>
-    管理画面機能 2<br>
-    管理画面機能 3<br>
-    管理画面機能 4<br>
-    <a href="/admin/logout">ログアウト</a><br>
-    </menu>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>買い物リスト 管理画面</title>
+</head>
+<body>
+    <p>
+        <a href="{{ route('admin.top') }}">管理画面Top</a><br>
+        <a href="{{ route('admin.user.list') }}">ユーザー一覧</a><br>
+        <a href="/admin/logout">ログアウト</a>
+    </p>
+
     <h1>管理画面</h1>
-    (アクセス傾向のグラフや警告などを表示する事が多い)<br>
-@endsection
+</body>
+</html>

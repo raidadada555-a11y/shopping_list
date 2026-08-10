@@ -7,7 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShoppingListController;
 use App\Http\Controllers\CompletedShoppingListController;
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
+use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\HomeController as AdminHomeController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 
@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 |--------------------------------------------------------------------------
 */
 
-// 買い物リスト・認証
+// 買い物リスト
 Route::get('/', [AuthController::class, 'index'])->name('front.index');
 Route::post('/login', [AuthController::class, 'login']);
 
@@ -27,7 +27,7 @@ Route::prefix('/user')->group(function () {
     Route::post('/register', [UserController::class, 'register'])->name('front.user.register.post');
 });
 
-// 認可処理（ユーザー側）
+// 認可処理
 Route::middleware(['auth'])->group(function () {
     Route::prefix('/shopping_list')->group(function () {
         Route::get('/list', [ShoppingListController::class, 'list'])->name('front.list');
@@ -38,7 +38,7 @@ Route::middleware(['auth'])->group(function () {
 
     // 購入済み「買うもの」一覧
     Route::get('/completed_shopping_list/list', [CompletedShoppingListController::class, 'list']);
-    
+
     // ログアウト
     Route::get('/logout', [AuthController::class, 'logout']);
 });
@@ -48,12 +48,12 @@ Route::prefix('/admin')->group(function () {
     Route::get('', [AdminAuthController::class, 'index'])->name('admin.index');
     Route::post('/login', [AdminAuthController::class, 'login'])->name('admin.login');
 
-    // 管理画面の認可処理
+    // 認可処理
     Route::middleware(['auth:admin'])->group(function () {
         Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
-        Route::get('/user/list', [AdminUserController::class, 'list'])->name('admin.user.list');
+        Route::get('/user/list', [AdminUserController::class, 'index'])->name('admin.user.list');
         
         // ログアウト
-        Route::get('/logout', [AdminAuthController::class, 'logout']);
+        Route::post('/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
     });
 });
