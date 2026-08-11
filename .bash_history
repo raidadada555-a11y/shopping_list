@@ -1,175 +1,3 @@
-use App\Http\Controllers\CompletedTaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-
-// トップページ（ログイン判定）
-Route::get('/', function () {
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        return redirect('/task/list');
-    }
-    return view('welcome');
-})->name('front.index');
-
-// 通常ログイン用
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// 会員登録関連
-Route::get('/user/register', [UserController::class, 'index'])->name('front.user.register');
-Route::post('/user/register', [UserController::class, 'register'])->name('front.user.register.post');
-
-// タスク管理関連（ログイン必須）
-Route::middleware(['auth'])->group(function () {
-    Route::get('/task/list', [TaskController::class, 'list'])->name('task.list');
-    Route::post('/task/register', [TaskController::class, 'register'])->name('task.register');
-    Route::get('/task/edit/{task_id}', [TaskController::class, 'edit'])->name('edit');
-    Route::post('/task/editSave/{task_id}', [TaskController::class, 'editSave'])->name('editSave');
-    Route::get('/task/detail/{task_id}', [TaskController::class, 'detail'])->name('detail');
-    
-    // 完了タスク一覧・完了処理
-    Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list'])->name('completed_tasks.list');
-    Route::post('/task/complete/{task_id}', [TaskController::class, 'complete'])->name('task.complete');
-
-    // ログアウト
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-// 管理画面
-Route::get('/admin', [AdminAuthController::class, 'index'])->name('admin.index');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-
-Route::prefix('/admin')->middleware(['auth:admin'])->group(function () {
-    Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
-    Route::get('/logout', [AdminHomeController::class, 'logout']);
-});
-EOF
-
-php artisan route:clear
-php artisan config:clear
-cd /var/www/laravel_app
-sudo truncate -s 0 routes/web.php
-cd /var/www/laravel_app
-python3 -c "
-code = '''<?php
-
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TaskController;
-use App\Http\Controllers\CompletedTaskController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\LoginController; 
-use App\Http\Controllers\Admin\AuthController as AdminAuthController;
-use App\Http\Controllers\Admin\HomeController as AdminHomeController;
-
-// トップページ（ログイン判定）
-Route::get('/', function () {
-    if (\Illuminate\Support\Facades\Auth::check()) {
-        return redirect('/task/list');
-    }
-    return view('welcome');
-})->name('front.index');
-
-// 通常ログイン用
-Route::post('/login', [LoginController::class, 'login'])->name('login');
-
-// 会員登録関連
-Route::get('/user/register', [UserController::class, 'index'])->name('front.user.register');
-Route::post('/user/register', [UserController::class, 'register'])->name('front.user.register.post');
-
-// タスク管理関連（ログイン必須）
-Route::middleware(['auth'])->group(function () {
-    Route::get('/task/list', [TaskController::class, 'list'])->name('task.list');
-    Route::post('/task/register', [TaskController::class, 'register'])->name('task.register');
-    Route::get('/task/edit/{task_id}', [TaskController::class, 'edit'])->name('edit');
-    Route::post('/task/editSave/{task_id}', [TaskController::class, 'editSave'])->name('editSave');
-    Route::get('/task/detail/{task_id}', [TaskController::class, 'detail'])->name('detail');
-    
-    // 完了タスク一覧・完了処理
-    Route::get('/completed_tasks/list', [CompletedTaskController::class, 'list'])->name('completed_tasks.list');
-    Route::post('/task/complete/{task_id}', [TaskController::class, 'complete'])->name('task.complete');
-
-    // ログアウト
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-// 管理画面
-Route::get('/admin', [AdminAuthController::class, 'index'])->name('admin.index');
-Route::post('/admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
-
-Route::prefix('/admin')->middleware(['auth:admin'])->group(function () {
-    Route::get('/top', [AdminHomeController::class, 'top'])->name('admin.top');
-    Route::get('/logout', [AdminAuthController::class, 'logout']);
-});
-'''
-with open('routes/web.php', 'w', encoding='utf-8') as f:
-    f.write(code)
-"
-php artisan route:clear
-php artisan config:clear
-cd /var/www/laravel_app
-rm -f routes/web.php
-touch routes/web.php
-sudo chmod 666 routes/web.php
-cd /var/www/laravel_app
-php artisan route:clear
-php artisan config:clear
-pwd
-ps aux | grep php
-sudo lsof -i :8080
-cd /var/www/laravel_app
-kill -9 57947 57949 65938 65940
-php artisan route:clear
-php artisan config:clear
-php artisan serve --host=0.0.0.0 --port=8080
-cd /var/www/laravel_app
-git status
-# ゴミファイルを削除する
-rm -f "= app('router')->getRoutes();"
-rm -f "AdminUser::where('login_id', 'admin')->first();"
-rm -f "as \$route) {"
-# 必要な変更ファイルのみをステージングする（ソースコード、設定、マイグレーション等）
-git add app/ config/ database/ resources/ routes/ .env.example
-# ステータスをもう一度確認
-git status
-git commit -m "Implement admin authentication and dashboard features"
-git push origin master
-cd /var/www/laravel_app
-php artisan migrate:fresh --seed
-cd /var/www/laravel_app
-git tag -d submission-20260803
-git push origin --delete submission-20260803
-git tag -a "submission-20260803" -m "8/3提出分"
-git push origin "submission-20260803"
-cd /var/www/laravel_app
-git commit --amend -m "8/3提出分"
-git push origin master --force
-php artisan route:list | grep admin
-cd /var/www/laravel_app
-php artisan route:list | grep admin
-cd /var/www/laravel_app
-php artisan route:clear
-php artisan config:clear
-php artisan serve --host=0.0.0.0 --port=8080
-cd /var/www/laravel_app
-tail -n 50 storage/logs/laravel.log
-cd /var/www/laravel_app
-sudo chmod -R 777 storage bootstrap/cache
-php artisan cache:clear
-php artisan config:clear
-php artisan route:clear
-sudo systemctl status mariadb
-select * from admin_users;
-cd /var/www/laravel_app
-cat resources/views/admin/index.blade.php
-cd /var/www/laravel_app
-ls -la resources/views/admin/
-cd /var/www/laravel_app
-cat << 'EOF' > resources/views/admin/index.blade.php
-@extends("admin.layout")
-
-@section("contents")
-    <div class="container mt-4">
-        <h1>管理画面 ログイン</h1>
         
         {{-- エラー表示部分 --}}
         @if ($errors->any())
@@ -1998,3 +1826,175 @@ cd /var/www/laravel_app
 php artisan migrate:fresh --seed
 cd /var/www/laravel_app
 php artisan serve --host=0.0.0.0 --port=8001
+cat << 'EOF' > app/Models/User.php
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+
+class User extends Authenticatable
+{
+    use HasApiTokens, HasFactory, Notifiable;
+
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+
+    public function completedShoppingLists()
+    {
+        return $this->hasMany(CompletedShoppingList::class);
+    }
+}
+EOF
+
+php artisan migrate:fresh
+cd laravelapp
+cd laravel_app
+ls
+composer install
+php artisan migrate:fresh
+cat << 'EOF' > app/Http/Controllers/CompletedShoppingListController.php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\CompletedShoppingList;
+use Illuminate\Support\Facades\Auth;
+
+class CompletedShoppingListController extends Controller
+{
+    // 購入済み「買うもの」一覧画面の表示
+    public function list()
+    {
+        $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
+            ->orderBy('name', 'asc')
+            ->paginate(3);
+
+        return view('shopping_list.completed_list', compact('completedShoppingLists'));
+    }
+}
+EOF
+
+cat << 'EOF' > app/Http/Controllers/CompletedShoppingListController.php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\CompletedShoppingList;
+use Illuminate\Support\Facades\Auth;
+
+class CompletedShoppingListController extends Controller
+{
+    // 購入済み「買うもの」一覧画面の表示
+    public function list()
+    {
+        $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
+            ->orderBy('name', 'asc')
+            ->paginate(3);
+
+        return view('shopping_list.completed_list', compact('completedShoppingLists'));
+    }
+}
+EOF
+
+cat << 'EOF' > app/Http/Controllers/CompletedShoppingListController.php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\CompletedShoppingList;
+use Illuminate\Support\Facades\Auth;
+
+class CompletedShoppingListController extends Controller
+{
+    // 購入済み「買うもの」一覧画面の表示
+    public function list()
+    {
+        $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
+            ->orderBy('name', 'asc')
+            ->paginate(3);
+
+        return view('shopping_list.completed_list', compact('completedShoppingLists'));
+    }
+}
+EOF
+
+cat << 'EOF' > app/Http/Controllers/CompletedShoppingListController.php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\CompletedShoppingList;
+use Illuminate\Support\Facades\Auth;
+
+class CompletedShoppingListController extends Controller
+{
+    // 購入済み「買うもの」一覧画面の表示
+    public function list()
+    {
+        $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
+            ->orderBy('name', 'asc')
+            ->paginate(3);
+
+        return view('shopping_list.completed_list', compact('completedShoppingLists'));
+    }
+}
+EOF
+
+touch app/Http/Controllers/CompletedShoppingListController.php
+echo -n > app/Http/Controllers/CompletedShoppingListController.php
+php artisan make:controller CompletedShoppingListController
+cat << 'EOF' > app/Http/Controllers/CompletedShoppingListController.php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\Models\CompletedShoppingList;
+use Illuminate\Support\Facades\Auth;
+
+class CompletedShoppingListController extends Controller
+{
+    // 購入済み「買うもの」一覧画面の表示
+    public function list()
+    {
+        $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
+            ->orderBy('name', 'asc')
+            ->paginate(3);
+
+        return view('shopping_list.completed_list', compact('completedShoppingLists'));
+    }
+}
+EOF
+
+ls -la app/Http/Controllers/
+git add .
+git commit -m "8/10 2回目提出"
+git push origin main
+git pull origin main
+git push origin main
+git pull origin main --no-rebase
+git push origin main
+git add app/Models/User.php
+git commit -m "8/10 2回目提出"
+git push origin main
