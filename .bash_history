@@ -1,10 +1,3 @@
-        
-        {{-- エラー表示部分 --}}
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                @foreach ($errors->all() as $error)
-                    {{ $error }}<br>
-                @endforeach
             </div>
         @endif
 
@@ -1998,3 +1991,10 @@ git push origin main
 git add app/Models/User.php
 git commit -m "8/10 2回目提出"
 git push origin main
+# 1. 変更されたファイルをすべてステージングに追加
+git add .
+# 2. まとめてコミット（メッセージは「最終調整」とします）
+git commit -m "最終調整：すべての変更を反映"
+# 3. GitHubへ送信
+git push origin main
+git status
