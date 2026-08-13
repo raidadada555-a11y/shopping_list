@@ -1,9 +1,3 @@
-            </div>
-        @endif
-
-        <form action="/admin/login" method="post">
-            @csrf
-            <div class="mb-3">
                 <label class="form-label">ログインID：</label>
                 <input type="text" name="login_id" class="form-control" value="{{ old('login_id') }}">
             </div>
@@ -1998,3 +1992,9 @@ git commit -m "最終調整：すべての変更を反映"
 # 3. GitHubへ送信
 git push origin main
 git status
+# 1. 変更内容をすべてステージングに追加
+git add .
+# 2. 8/12, 3回目提出分としてコミット
+git commit -m "8/12, 3回目提出分"
+# 3. GitHubへ送信
+git push origin main
