@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ShoppingList;
+use App\Models\CompletedShoppingList;
 use Illuminate\Support\Facades\Auth;
 
 class ShoppingListController extends Controller
@@ -40,7 +41,17 @@ class ShoppingListController extends Controller
         // ログインユーザーのデータであることを確認して取得
         $shoppingList = ShoppingList::where('user_id', Auth::id())->findOrFail($id);
 
-        return redirect('/completed_shopping_list/list');
+        // 購入済みテーブル（completed_shopping_lists）に保存
+        CompletedShoppingList::create([
+            'user_id' => Auth::id(),
+            'name' => $shoppingList->name,
+        ]);
+
+        // 元の買い物リストから削除
+        $shoppingList->delete();
+
+        // 命名規則に基づいた名前付きルートへリダイレクト（routes/web.php の設定に合わせる）
+        return redirect()->route('completed.list'); // ※routes/web.phpで定義した名前に必要に応じて変更してください
     }
 
     // 「買うもの」の削除処理
@@ -56,6 +67,12 @@ class ShoppingListController extends Controller
     // 購入済み「買うもの」一覧画面の表示
     public function completedList()
     {
-        return view('shopping_list.completed_list');
+        // name順 -> 購入日（複合ソート）
+        $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
+            ->orderBy('name', 'asc')
+            ->orderBy('created_at', 'desc')
+            ->paginate(3);
+
+        return view('shopping_list.completed_list', compact('completedShoppingLists'));
     }
 }
