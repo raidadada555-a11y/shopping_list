@@ -1,0 +1,14 @@
+{
+  "socketPath": "/tmp/mcp-9OEQuo/mcp.sock",
+  "scheme": "unix",
+  "headers": {
+    "Authorization": "Nonce d140574d-971e-46d3-89f1-381e34b93098"
+  },
+  "pid": 84637,
+  "ideName": "Visual Studio Code",
+  "timestamp": 1786666545174,
+  "workspaceFolders": [
+    "/var/www/laravel_app"
+  ],
+  "isTrusted": true
+}

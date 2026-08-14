@@ -1,0 +1,5 @@
+2026-08-14T00:15:31.868Z [INFO] Starting CLI in server mode (stdio)
+2026-08-14T00:15:31.880Z [INFO] Starting CLI in stdio mode (Rust JSON-RPC engine)
+2026-08-14T00:15:31.924Z [INFO] Shell completions: no writable completion directory found for bash, skipping
+2026-08-14T00:15:31.937Z [INFO] CLI server ready (stdio mode, Rust JSON-RPC engine)
+2026-08-14T00:15:31.937Z [INFO] Server started, waiting for requests

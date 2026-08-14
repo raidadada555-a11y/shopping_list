@@ -1,7 +1,3 @@
-                <label class="form-label">ログインID：</label>
-                <input type="text" name="login_id" class="form-control" value="{{ old('login_id') }}">
-            </div>
-            <div class="mb-3">
                 <label class="form-label">パスワード：</label>
                 <input type="password" name="password" class="form-control">
             </div>
@@ -1998,3 +1994,7 @@ git add .
 git commit -m "8/12, 3回目提出分"
 # 3. GitHubへ送信
 git push origin main
+git add .
+git commit -m "8/13修正提出用"
+git push origin main
+git status
