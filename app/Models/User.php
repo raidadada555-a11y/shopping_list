@@ -29,10 +29,6 @@ class User extends Authenticatable
 
     public function completedShoppingLists()
     {
-<<<<<<< HEAD
         return $this->hasMany(CompletedShoppingList::class);
-=======
-        return $this->hasMany(ShoppingList::class);
->>>>>>> 6edf9d572542b445f2ee3bb11d4f5fd3a4244c6c
     }
 }
