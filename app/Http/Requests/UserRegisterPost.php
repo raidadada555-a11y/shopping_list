@@ -16,8 +16,8 @@ class UserRegisterPost extends FormRequest
         return [
             // name: 必須、128文字以内
             'name' => ['required', 'string', 'max:128'],
-            // email: 必須、メールアドレス形式、255文字以内、usersテーブルで重複不可
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            // email: 必須、メールアドレス形式、254文字以内、usersテーブルで重複不可
+            'email' => ['required', 'string', 'email', 'max:254', 'unique:users'],
             // password: 必須、文字列、確認用入力と一致（confirmed）、72文字以内
             'password' => ['required', 'string', 'min:8', 'max:72', 'confirmed'],
         ];
@@ -30,7 +30,7 @@ class UserRegisterPost extends FormRequest
             'name.max' => 'The name may not be greater than 128 characters.',
             'email.required' => 'The email field is required.',
             'email.email' => 'The email must be a valid email address.',
-            'email.max' => 'The email may not be greater than 255 characters.',
+            'email.max' => 'The email may not be greater than 254 characters.',
             'email.unique' => 'The email has already been taken.',
             'password.required' => 'The password field is required.',
             'password.min' => 'The password must be at least 8 characters.',
