@@ -1,23 +1,20 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\Schema;
+namespace App\Http\Controllers;
 
-return new class extends Migration
+use Illuminate\Http\Request;
+use App\Models\CompletedShoppingList;
+use Illuminate\Support\Facades\Auth;
+
+class CompletedShoppingListController extends Controller
 {
-    public function up(): void
+    // 購入済み「買うもの」一覧画面の表示
+    public function list()
     {
-        Schema::create('completed_shopping_lists', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->string('name');
-            $table->timestamps();
-        });
-    }
+        $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
+            ->orderBy('name', 'asc')
+            ->paginate(3);
 
-    public function down(): void
-    {
-        Schema::dropIfExists('completed_shopping_lists');
+        return view('shopping_list.completed_list', compact('completedShoppingLists'));
     }
-};
+}
