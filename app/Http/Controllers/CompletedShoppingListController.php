@@ -12,7 +12,8 @@ class CompletedShoppingListController extends Controller
     public function list()
     {
         $completedShoppingLists = CompletedShoppingList::where('user_id', Auth::id())
-            ->orderBy('name', 'asc')
+            ->orderBy('name', 'asc')             // 名前順
+            ->orderBy('created_at', 'desc')      // 購入日の新しい順
             ->paginate(3);
 
         return view('shopping_list.completed_list', compact('completedShoppingLists'));
