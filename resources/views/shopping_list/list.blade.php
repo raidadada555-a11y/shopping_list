@@ -28,9 +28,9 @@
 
     <h1 style="margin-top: 20px;">「買うもの」一覧</h1>
 
-    <!-- 購入済みリストへのリンク -->
+   <!-- 購入済みリストへのリンク -->
     <p>
-        <a href="/shopping_list/completed_shopping_list/list">購入済み「買うもの」一覧</a>
+        <a href="{{ route('completed.list') }}">購入済み「買うもの」一覧</a>
     </p>
 
    <!-- 2. 一覧テーブル -->
