@@ -9,7 +9,7 @@
 
     <!-- 「買うもの」一覧に戻るリンク -->
     <p>
-        <a href="/shopping_list/list">「買うもの」一覧に戻る</a>
+        <a href="{{ route('front.list') }}">「買うもの」一覧に戻る</a>
     </p>
 
     <!-- 一覧テーブル -->
@@ -18,19 +18,17 @@
             <th style="border: 3px double black; padding: 5px 10px;">「買うもの」名</th>
             <th style="border: 3px double black; padding: 5px 10px;">購入日</th>
         </tr>
-        {{-- 後ほど購入済みデータをここにループで表示します --}}
-        <tr>
-            <td style="border: 3px double black; padding: 5px 10px;">ウズラの卵</td>
-            <td style="border: 3px double black; padding: 5px 10px;">2021/12/09</td>
-        </tr>
+        @foreach ($completedShoppingLists as $completedShoppingList)
+            <tr>
+                <td style="border: 3px double black; padding: 5px 10px;">{{ $completedShoppingList->name }}</td>
+                <td style="border: 3px double black; padding: 5px 10px;">{{ $completedShoppingList->created_at }}</td>
+            </tr>
+        @endforeach
     </table>
     
     <!-- ページネーション表示 -->
     <div style="margin-top: 10px;">
-        <p>現在 1 ページ目</p>
-        <div>
-            最初のページ / 前に戻る / 次に進む
-        </div>
+        {{ $completedShoppingLists->links() }}
     </div>
 
     <hr style="margin: 20px 0;">
